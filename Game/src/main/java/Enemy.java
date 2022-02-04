@@ -4,8 +4,9 @@ public class Enemy {
     public boolean encounter = false;
     private String AttackType;
     public String Goblin(){
-        int GoblinNum = (int) (Math.random()*3 +2);
+        int GoblinNum = (int) (Math.random()*3 +1);
         int GoblinHP = 15;
+        int GroupHP = GoblinHP*GoblinNum;
         int Attack = 4;
         Scanner myObj = new Scanner(System.in);
 
@@ -38,6 +39,7 @@ public class Enemy {
                         System.out.println("You use one of your potions from your bag and sprinkle it over yourself.\n" +
                                 "The crystal clear liquid revitalises you and you feel ready for battle!");
                         Player.Potions -= 1;
+                        Player.CurrentHealth += 10;
                     }
                     else{
                         System.out.println("You're out of potions and there's no potion seller in sight!");
@@ -48,7 +50,7 @@ public class Enemy {
                 case "Strike":
                     System.out.println("You aim at one of the Goblins with your trusty axe.");
                     int StrikeChance = (int) (Math.random()*3 +1);
-                    if (StrikeChance == 4){
+                    if (StrikeChance == 3){
                         System.out.println("You missed!");
                         System.out.println("The goblin reacts ferociously with a flurry of teeth and claws!");
                         int GobDamage =  (int) (Math.random()*3 +1);
@@ -58,28 +60,42 @@ public class Enemy {
                     }
                     else{
                         System.out.println("You strike the Goblin with a cleaving blow!");
-                        System.out.println("The goblin reacts ferociously with a flurry of teeth and claws!");
-                        int Damage = (int) (Math.random()*8+5);
                         int GobDamage =  (int) (Math.random()*3 +1);
                         Player.CurrentHealth -= GobDamage;
-                        GoblinHP -= Damage;
+                        GroupHP -= Player.Damage;
+                        var Firstkill = true;
+                        var Secondkill = true;
+                        if ((GroupHP <= (GoblinHP * GoblinNum) - 15  && Firstkill == true)){
+                            System.out.println("Your axe carves its way through the Goblin's chest and you turn\n" +
+                                    "your attention to the next, wiping its comrades remains off your axe.");
+                            Firstkill = false;
+                        }
+                        else if (GroupHP <= (GoblinHP*GoblinNum) -30 && Secondkill == true && GoblinNum == 3){
+                            System.out.println("A lucky hit and the second Goblin's head comes clean off.\n" +
+                                    "Wearily you gather yourself and face the final one, its eyes burning with hate.");
+                            Secondkill = false;
+                        }
+                        else{System.out.println("The goblin reacts ferociously with a flurry of teeth and claws!");}
                         Action = myObj.nextLine();
                         break;
                     }
 
                 case "Status":
                     System.out.println("Name = " + Player.name);
+                    System.out.println("Level =" + Player.Playerlevel);
+                    System.out.println("Exp =" + Player.PlayerExp);
                     System.out.println("Health = " + Player.CurrentHealth + "/" + Player.MaxHealth);
+                    System.out.println("Number of Potions = " + Player.Potions);
                     Action = myObj.nextLine();
                     break;
 
 
             }
-        }while (GoblinHP>= 1 && Escape == false);
+        }while (GroupHP>= 1 && Escape == false);
         if (Escape == false){
-            Player.PlayerExp += 30;
+            Player.PlayerExp += 30*GoblinNum;
             Player.Levelup();
-            System.out.println("You have slain your foes!");}
+            System.out.println("You have slain the Goblins!");}
         else{
 
         }
@@ -87,7 +103,7 @@ public class Enemy {
     }
     public String EnemyEncounter(){
 
-        int Chanceofattack = (int) (Math.random() * 2);
+        int Chanceofattack = (int) (Math.random() * 3);
         if (Chanceofattack == 1) {
             encounter = true;
             AttackType = Goblin();
