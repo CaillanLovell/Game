@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.Arrays;
 public class Main {
         public static void main(String[] args) {
             Scanner myObj = new Scanner(System.in);
@@ -8,8 +8,53 @@ public class Main {
                     "Feeling a drive deep inside of you, you head off into the vast expanse to find your destination.\n" +
                     " Which direction do you head? (Enter East, West, North or South)");
             String Direction = myObj.nextLine();
-            if (Direction == "West"){
+            int [] CurrentPosition = Player.Position();
+            int [] CastlePosition = {(int) (Math.random() * 8),(int) (Math.random() * 8)};
+            double Distance = Math.sqrt(Math.pow((CastlePosition[0] - CurrentPosition[0]),2) + Math.pow((CastlePosition[1] - CurrentPosition[1]),2));
+            do  {
+                switch (Direction){
+
+                    case "North":
+                        CurrentPosition[0] += 1;
+                        Distance = Math.sqrt(Math.pow((CastlePosition[0] - CurrentPosition[0]), 2) + Math.pow((CastlePosition[1] - CurrentPosition[1]), 2));
+                        Direction = myObj.nextLine();
+                        break;
+
+                    case "South":
+                        CurrentPosition[0] -= 1;
+                        Distance = Math.sqrt(Math.pow((CastlePosition[0] - CurrentPosition[0]),2) + Math.pow((CastlePosition[1] - CurrentPosition[1]),2));
+                        int Chanceofarea = (int) (Math.random() * 5);
+                        if (Chanceofarea == 1) {
+                            System.out.println(Area.Desert());
+
+                        }
+                        Direction = myObj.nextLine();
+                        break;
+
+                    case "East":
+                        CurrentPosition[1] += 1;
+                        Distance = Math.sqrt(Math.pow((CastlePosition[0] - CurrentPosition[0]), 2) + Math.pow((CastlePosition[1] - CurrentPosition[1]), 2));
+                        Direction = myObj.nextLine();
+                        break;
+
+                    case "West":
+                        CurrentPosition[1] -= 1;
+                        Distance = Math.sqrt(Math.pow((CastlePosition[0] - CurrentPosition[0]), 2) + Math.pow((CastlePosition[1] - CurrentPosition[1]), 2));
+                        Direction = myObj.nextLine();
+                        break;
+
+
+                    case "Compass":
+                        Distance = Math.sqrt(Math.pow((CastlePosition[0] - CurrentPosition[0]), 2) + Math.pow((CastlePosition[1] - CurrentPosition[1]), 2));
+                        System.out.println(Distance);
+                        Direction = myObj.nextLine();
+                        break;
 
             }
+
+
+            }while (Distance != 0.0);
+
+            System.out.println("Congratulations, you found the castle!");
         }
     }

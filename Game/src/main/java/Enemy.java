@@ -1,2 +1,8 @@
-package PACKAGE_NAME;public class Enemy {
+
+public class Enemy {
+
+    public static void Gorgon(){
+
+
+    }
 }
