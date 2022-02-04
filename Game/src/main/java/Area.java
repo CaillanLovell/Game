@@ -7,5 +7,13 @@ public class Area {
 
     }
 
+    public static String Swamp(){
+
+        return "You enter a humid wetland, steam coiling up in the air before you. \n" +
+                "The new area that bubbles and squishing beneath your every step slows your progress. \n" +
+                "Your move speed is decreased. Where will you head?";
+
+    }
+
 
 }

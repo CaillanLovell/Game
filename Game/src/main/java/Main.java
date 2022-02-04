@@ -17,16 +17,25 @@ public class Main {
                     case "North":
                         CurrentPosition[0] += 1;
                         Distance = Math.sqrt(Math.pow((CastlePosition[0] - CurrentPosition[0]), 2) + Math.pow((CastlePosition[1] - CurrentPosition[1]), 2));
+                        int Chanceofarea = (int) (Math.random() * 5);
+                        if (Chanceofarea == 1){
+                            System.out.println(Area.Desert());
+                        }
+                        else if (Chanceofarea == 2){
+                            System.out.println(Area.Swamp());
+                        }
                         Direction = myObj.nextLine();
                         break;
 
                     case "South":
                         CurrentPosition[0] -= 1;
                         Distance = Math.sqrt(Math.pow((CastlePosition[0] - CurrentPosition[0]),2) + Math.pow((CastlePosition[1] - CurrentPosition[1]),2));
-                        int Chanceofarea = (int) (Math.random() * 5);
+                        Chanceofarea = (int) (Math.random() * 5);
                         if (Chanceofarea == 1) {
                             System.out.println(Area.Desert());
-
+                        }
+                        else if (Chanceofarea == 2){
+                            System.out.println(Area.Swamp());
                         }
                         Direction = myObj.nextLine();
                         break;
@@ -34,12 +43,26 @@ public class Main {
                     case "East":
                         CurrentPosition[1] += 1;
                         Distance = Math.sqrt(Math.pow((CastlePosition[0] - CurrentPosition[0]), 2) + Math.pow((CastlePosition[1] - CurrentPosition[1]), 2));
+                        Chanceofarea = (int) (Math.random() * 5);
+                        if (Chanceofarea == 1) {
+                            System.out.println(Area.Desert());
+                        }
+                        else if (Chanceofarea == 2){
+                            System.out.println(Area.Swamp());
+                        }
                         Direction = myObj.nextLine();
                         break;
 
                     case "West":
                         CurrentPosition[1] -= 1;
                         Distance = Math.sqrt(Math.pow((CastlePosition[0] - CurrentPosition[0]), 2) + Math.pow((CastlePosition[1] - CurrentPosition[1]), 2));
+                        Chanceofarea = (int) (Math.random() * 5);
+                        if (Chanceofarea == 1) {
+                            System.out.println(Area.Desert());
+                        }
+                        else if (Chanceofarea == 2){
+                            System.out.println(Area.Swamp());
+                        }
                         Direction = myObj.nextLine();
                         break;
 
